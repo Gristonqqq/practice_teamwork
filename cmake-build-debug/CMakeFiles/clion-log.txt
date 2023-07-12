@@ -1,13 +1,4 @@
 "C:\Program Files\JetBrains\CLion 2022.2.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 2022.2.4/bin/ninja/win/ninja.exe" -G Ninja -S C:\Users\sasha\Documents\GitHub\practice_teamwork -B C:\Users\sasha\Documents\GitHub\practice_teamwork\cmake-build-debug
 -- Configuring done
-CMake Error at CMakeLists.txt:6 (add_executable):
-  Cannot find source file:
-
-    function_buying.h
-
-
-CMake Error at CMakeLists.txt:6 (add_executable):
-  No SOURCES given to target: practice_teamwork
-
-
-CMake Generate step failed.  Build files cannot be regenerated correctly.
+-- Generating done
+-- Build files have been written to: C:/Users/sasha/Documents/GitHub/practice_teamwork/cmake-build-debug
