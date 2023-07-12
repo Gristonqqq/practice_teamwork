@@ -44,22 +44,22 @@ bool isEmailRegistered(const char* email, int index) {
 
 void saveDataToFile() {
     FILE* acc = fopen("info_acc.txt", "wt");
-    for (int i = 0; i < 100; i++) {
-        if (strlen(people[i].email_of_acc) == 0) {
+    for (int index = 0; index < 100; index++) {
+        if (strlen(people[index].email_of_acc) == 0) {
             break;
         }
-        fprintf(acc, "%s %s %s %s\n", people[i].email_of_acc, people[i].password_of_acc,
-                people[i].name_of_acc, people[i].surname_of_acc);
+        fprintf(acc, "%s %s %s %s\n", people[index].email_of_acc, people[index].password_of_acc,
+                people[index].name_of_acc, people[index].surname_of_acc);
     }
     fclose(acc);
 }
 
 void loadDataFromFile() {
     FILE* acc = fopen("info_acc.txt", "rt");
-    int i = 0;
-    while (fscanf(acc, "%s %s %s %s", people[i].email_of_acc, people[i].password_of_acc,
-                  people[i].name_of_acc, people[i].surname_of_acc) == 4) {
-        i++;
+    int index = 0;
+    while (fscanf(acc, "%s %s %s %s", people[index].email_of_acc, people[index].password_of_acc,
+                  people[index].name_of_acc, people[index].surname_of_acc) == 4) {
+        index++;
     }
     fclose(acc);
 }
