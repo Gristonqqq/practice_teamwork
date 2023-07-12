@@ -5,6 +5,7 @@
 #include <string.h>
 
 int function_buying();
+int function_acc();
 
 int main() {
     int menu_item;
@@ -14,9 +15,9 @@ int main() {
         printf("Введіть цифру пункту меню:\n");
         menu_item = getch();
         switch (menu_item) {
-            case '1':
+            case '1': function_acc(); break;
             case '2':
-            case '3': function_buying();
+            case '3': function_buying(); break;
                 break;
             case '4': exit(1);
             default:
