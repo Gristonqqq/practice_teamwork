@@ -10,10 +10,12 @@ typedef struct {
 } basket;
 
 void adding_goods();
-void basket_view(int product_count);
+float basket_view(int product_count);
+void buy_all_products(float product_cost_summ);
 
 int function_buying(int login_is_true){
     int menu_buy_item, product_count = 0;
+    float product_cost_summ;
     remove("basket.txt");
     FILE *f = fopen("basket.txt", "wt");
     fclose(f);
@@ -28,11 +30,15 @@ int function_buying(int login_is_true){
                     product_count++;
                     break;
                 case '2':
-                    basket_view(product_count);
+                    product_cost_summ = basket_view(product_count);
                     break;
                 case '3':
+                    buy_all_products(product_cost_summ);
+                    break;
                 case '4':
-                    remove("basket.txt");
+                    f = fopen("basket.txt", "wt");
+                    fclose(f);
+                    product_count = 0;
                     break;
                 case '5':
                     remove("basket.txt");
@@ -76,14 +82,24 @@ void adding_goods(){
     fclose(product_list);
 }
 
-void basket_view(int product_count){
+float basket_view(int product_count){
     basket list;
+    float product_cost_summ = 0;
     FILE *basket = fopen("basket.txt", "rt");
     for (int i = 0; i < product_count; i++){
         fread(list.goods_name, sizeof(list.goods_name), 1, basket);
         fread(&list.goods_cost, sizeof(float), 1, basket);
         printf("%s\t", list.goods_name);
         printf("%.2f\n", list.goods_cost);
+        product_cost_summ += list.goods_cost;
     }
+    printf("\n Загальна ціна за обрану їжу: %.2f\n\n", product_cost_summ);
     fclose(basket);
+    return product_cost_summ;
+}
+
+void buy_all_products(float product_cost_summ){
+    printf("Ваше замовлення на суму %.2f було оброблене. Дякуємо що обрали наш сервіс!\n\n", product_cost_summ);
+    FILE *f = fopen("basket.txt", "wt");
+    fclose(f);
 }
