@@ -92,6 +92,30 @@ int reg_info_of_acc() {
     return printf("\nАкаунт зареєстровано\n");
 }
 
-int log_info_of_acc (int login_is_true) {
-
-}
+/*int log_info_of_acc (int login_is_true) {
+    int index;
+    char log_email[32], log_password[32];
+    FILE* acc;
+    acc = fopen("info_acc.txt", "rt");
+    printf("Введіть свою пошту (email): ");
+    scanf("%s", &log_email);
+    for (index = 0; index < 100; index++){
+        scanf(stdin, "%s", people[index].email_of_acc);
+        if (strcmp(people[index].email_of_acc, log_email) == 0){
+            printf("Введіть пароль (якщо забули пароль введіть: 'IForgotPass'): ");
+            while (strcmp(people[index].password_of_acc, log_password) != 0){
+                scanf("%s", &log_password);
+                if (strcmp((const char *) 'IForgotPass', log_password) == 0){
+                    printf("Згадайте пароль і повертайтесь!\n");
+                    fclose(acc);
+                    return login_is_true = 0;
+                }
+            }
+            printf("Вітаємо, ви авторизувалися!\n");
+            fclose(acc);
+            return login_is_true = 1;
+        }
+    }
+    printf("Ця пошта не зареєстрована!\n");
+    fclose(acc);
+}*/
