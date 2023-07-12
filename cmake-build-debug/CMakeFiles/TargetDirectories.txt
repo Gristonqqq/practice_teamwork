@@ -1,3 +1,3 @@
-C:/Users/sasha/Documents/GitHub/practice_teamwork/cmake-build-debug/CMakeFiles/practice_teamwork.dir
-C:/Users/sasha/Documents/GitHub/practice_teamwork/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/sasha/Documents/GitHub/practice_teamwork/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/night/GitHubFiles/practice_teamwork/cmake-build-debug/CMakeFiles/practice_teamwork.dir
+C:/Users/night/GitHubFiles/practice_teamwork/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/night/GitHubFiles/practice_teamwork/cmake-build-debug/CMakeFiles/rebuild_cache.dir
