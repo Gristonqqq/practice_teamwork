@@ -13,9 +13,9 @@ struct info {
 int reg_info_of_acc ();
 int log_info_of_acc (int* check_log);
 
-int function_acc(int login_is_true) {
+int function_acc(int* login_is_true) {
      int menu_char_acc = 0;
-     int* check_log = 0;
+     int check_log = 0;
      while (true){
          printf("1. Реєстрація\n2. Ввійти в акаунт\n3. Показати всіх зареєстрованих користувачів\n4. Назад\n");
          menu_char_acc = getch();
@@ -33,8 +33,8 @@ int function_acc(int login_is_true) {
                  break;
              case '3':
              case '4':
-                 login_is_true = *check_log;
-                 return login_is_true;
+                 *login_is_true = check_log;
+                 return *login_is_true;
              default:
                  printf("\nВиберіть коректну цифру\n");
          }
@@ -115,6 +115,9 @@ int log_info_of_acc (int* check_log) {
             printf("Введіть пароль (якщо забули пароль введіть: 'IForgotPass'): ");
             while (strcmp(people[index].password_of_acc, log_password) != 0){
                 scanf("%s", log_password);
+                if (strcmp(people[index].password_of_acc, log_password) != 0){
+                    printf("Не вірний пароль, спробуйте ще раз.\n");
+                }
                 if (strcmp((const char *) "IForgotPass", log_password) == 0){
                     printf("Згадайте пароль і повертайтесь!\n");
                     fclose(acc);
