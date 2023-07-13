@@ -12,6 +12,7 @@ struct info {
 
 int reg_info_of_acc ();
 int log_info_of_acc (int* check_log);
+void show_info_of_acc ();
 
 int function_acc(int* login_is_true) {
      int menu_char_acc = 0;
@@ -32,6 +33,8 @@ int function_acc(int* login_is_true) {
                  }
                  break;
              case '3':
+                 show_info_of_acc ();
+                 break;
              case '4':
                  *login_is_true = check_log;
                  return *login_is_true;
@@ -128,5 +131,18 @@ int log_info_of_acc (int* check_log) {
             fclose(acc);
             return *check_log = 1;
         }
+    }
+}
+
+void show_info_of_acc (){
+    int index = 0;
+    FILE* acc;
+    loadDataFromFile();
+    acc = fopen("info_acc.txt", "rt");
+    while (fscanf(acc, "%s %s %s %s", people[index].email_of_acc, people[index].password_of_acc,
+                  people[index].name_of_acc, people[index].surname_of_acc) == 4) {
+        printf("%s %s %s\n", people[index].email_of_acc, people[index].name_of_acc,
+               people[index].surname_of_acc);
+        index++;
     }
 }
