@@ -6,6 +6,7 @@
 
 int function_buying(int* login_is_true);
 int function_acc(int* login_is_true);
+int function_list_of_products();
 
 int main() {
     int menu_item, login_is_true = 0;
@@ -15,8 +16,12 @@ int main() {
         printf("Введіть цифру пункту меню:\n");
         menu_item = getch();
         switch (menu_item) {
-            case '1': function_acc(&login_is_true); break;
+            case '1':
+                function_acc(&login_is_true);
+                break;
             case '2':
+                function_list_of_products();
+                break;
             case '3':
                 function_buying(&login_is_true);
                 break;
