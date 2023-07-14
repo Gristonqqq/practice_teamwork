@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 
-void readAndProcessFile(const char *filename) {\
+#define NUM_CATEGORIES 7
+
+void readAndProcessFile(const char *filename) {
     FILE *file = fopen(filename, "r");
     if (file != NULL) {
         printf("Файл '%s' відкрито успішно.\n", filename);
-
 
         fseek(file, 0, SEEK_END);
         long size = ftell(file);
@@ -26,22 +27,24 @@ void readAndProcessFile(const char *filename) {\
 }
 
 void printMenu() {
-    const char *arr[7] = {
-            "1. Фрукти та овочі\n",
-            "2. М'ясо та риба\n",
-            "3. Вода\n",
-            "4. Сік та безалкогольні напої\n",
-            "5. Молочні продукти та яйця\n",
-            "6. Хлібні вироби\n",
-            "7. Бакалії, крупи, та макаронні вироби\n"
+    const char *categories[NUM_CATEGORIES] = {
+            "Фрукти та овочі",
+            "М'ясо та риба",
+            "Вода",
+            "Сік та безалкогольні напої",
+            "Молочні продукти та яйця",
+            "Хлібні вироби",
+            "Бакалії, крупи, та макаронні вироби"
     };
 
     printf("Каталог меню:\n");
 
-    for (int i = 0; i < 7; i++) {
-        printf("%s", arr[i]);
+    for (int i = 0; i < NUM_CATEGORIES; i++) {
+        printf("%d. %s\n", i + 1, categories[i]);
     }
 }
+
+const char *categories[NUM_CATEGORIES];
 
 int display_list_of_products() {
 
@@ -53,8 +56,8 @@ int display_list_of_products() {
     printf("Виберіть пункт меню: ");
     scanf("%d", &choice);
 
-    if (choice >= 1 && choice <= 7) {
-        const char *filenames[7] = {
+    if (choice >= 1 && choice <= NUM_CATEGORIES) {
+        const char *filenames[NUM_CATEGORIES] = {
                 "Fruits_vegetables.txt",
                 "Meat_fish.txt",
                 "water.txt",
@@ -64,17 +67,7 @@ int display_list_of_products() {
                 "Groceries_cereals_pasta.txt"
         };
 
-        const char *menuOptions[7] = {
-                "Фрукти та овочі",
-                "М'ясо та риба",
-                "Вода",
-                "Сік та безалкогольні напої",
-                "Молочні продукти та яйця",
-                "Хлібні вироби",
-                "Бакалії, крупи, та макаронні вироби"
-        };
-
-        printf("Ви обрали '%s'.\n", menuOptions[choice - 1]);
+        printf("Ви обрали '%s'.\n", categories[choice - 1]);
         strcpy(filename, filenames[choice - 1]);
         readAndProcessFile(filename);
     } else if (choice == 0) {
@@ -82,6 +75,6 @@ int display_list_of_products() {
     } else {
         printf("Невірний вибір. Спробуйте ще раз.\n");
     }
-
+    
     return 0;
 }
