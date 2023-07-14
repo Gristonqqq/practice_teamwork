@@ -53,10 +53,13 @@ bool isEmailRegistered(const char* email, int index) {
     return false;
 }
 
-int check_file_info(FILE* acc, int index){
-    int token = fscanf(acc, "%s %s %s %s", people[index].email_of_acc, people[index].password_of_acc,
-           people[index].name_of_acc, people[index].surname_of_acc);
-    return token;
+bool isFileNotEmpty(FILE* acc, int index){
+    int expectedReadFieldsCount = 4;
+    if (fscanf(acc, "%s %s %s %s", people[index].email_of_acc, people[index].password_of_acc,
+           people[index].name_of_acc, people[index].surname_of_acc) == expectedReadFieldsCount){
+        return true;
+    }
+    return false;
 }
 
 void saveDataToFile() {
@@ -74,7 +77,7 @@ void saveDataToFile() {
 void loadDataFromFile() {
     FILE* acc = fopen("info_acc.txt", "rt");
     int index = 0;
-    while (check_file_info(acc, index) == 4) {
+    while (isFileNotEmpty(acc, index) == true) {
         index++;
     }
     fclose(acc);
@@ -145,7 +148,7 @@ void show_info_of_acc (){
     FILE* acc;
     loadDataFromFile();
     acc = fopen("info_acc.txt", "rt");
-    while (check_file_info(acc, index) == 4) {
+    while (isFileNotEmpty(acc, index) == true) {
         printf("%s %s %s\n", people[index].email_of_acc, people[index].name_of_acc,
                people[index].surname_of_acc);
         index++;
