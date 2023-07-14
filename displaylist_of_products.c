@@ -43,7 +43,7 @@ void printMenu() {
     }
 }
 
-int list_of_products() {
+int displaylist_of_products() {
 
     int choice;
     char filename[100];
