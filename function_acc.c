@@ -55,11 +55,8 @@ bool isEmailRegistered(const char* email, int index) {
 
 bool isFileNotEmpty(FILE* acc, int index){
     int expectedReadFieldsCount = 4;
-    if (fscanf(acc, "%s %s %s %s", people[index].email_of_acc, people[index].password_of_acc,
-           people[index].name_of_acc, people[index].surname_of_acc) == expectedReadFieldsCount){
-        return true;
-    }
-    return false;
+    return fscanf(acc, "%s %s %s %s", people[index].email_of_acc, people[index].password_of_acc,
+                  people[index].name_of_acc, people[index].surname_of_acc) == expectedReadFieldsCount;
 }
 
 void saveDataToFile() {
