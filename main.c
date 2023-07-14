@@ -6,12 +6,13 @@
 #include <windows.h>
 
 int buying(bool* isEachUserLoggedIn);
-int account_info(bool* isEachUserLoggedIn);
+int account_info(bool* isEachUserLoggedIn, char* get_email_from_login);
 void display_list_of_products();
 void recomendation_algoritm();
 
 int main() {
     int menu_item;
+    char get_email_from_login;
     SetConsoleCP(65001);
     SetConsoleOutputCP(65001);
     bool isEachUserLoggedIn = false;
@@ -22,7 +23,7 @@ int main() {
         menu_item = getch();
         switch (menu_item) {
             case '1':
-                account_info(&isEachUserLoggedIn);
+                account_info(&isEachUserLoggedIn, &get_email_from_login);
                 break;
             case '2':
                 display_list_of_products();
