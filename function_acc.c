@@ -11,12 +11,11 @@ struct info {
 } people[100];
 
 int reg_info_of_acc ();
-int log_info_of_acc (int* check_log);
+int log_info_of_acc (bool* isEachUserLoggedIn);
 void show_info_of_acc ();
 
-int account_info(int* login_is_true) {
+int account_info(bool* isEachUserLoggedIn) {
      int menu_char_acc = 0;
-     int check_log = 0;
      while (true){
          printf("1. Реєстрація\n2. Ввійти в акаунт\n3. Показати всіх зареєстрованих користувачів\n4. Назад\n");
          menu_char_acc = getch();
@@ -25,19 +24,18 @@ int account_info(int* login_is_true) {
                  reg_info_of_acc();
                  break;
              case '2':
-                 if (check_log == 1){
+                 if (*isEachUserLoggedIn == true){
                      printf("\nВи вже увійшли до акаунта!\n");
                  }
                  else{
-                     log_info_of_acc (&check_log);
+                     log_info_of_acc (isEachUserLoggedIn);
                  }
                  break;
              case '3':
                  show_info_of_acc ();
                  break;
              case '4':
-                 *login_is_true = check_log;
-                 return *login_is_true;
+                 return *isEachUserLoggedIn;
              default:
                  printf("\nВиберіть коректну цифру\n");
          }
@@ -51,6 +49,12 @@ bool isEmailRegistered(const char* email, int index) {
         }
     }
     return false;
+}
+
+bool isFileNotEmpty(FILE* acc, int index){
+    int expectedReadFieldsCount = 4;
+    return fscanf(acc, "%s %s %s %s", people[index].email_of_acc, people[index].password_of_acc,
+                  people[index].name_of_acc, people[index].surname_of_acc) == expectedReadFieldsCount;
 }
 
 void saveDataToFile() {
@@ -68,11 +72,14 @@ void saveDataToFile() {
 void loadDataFromFile() {
     FILE* acc = fopen("info_acc.txt", "rt");
     int index = 0;
-    while (fscanf(acc, "%s %s %s %s", people[index].email_of_acc, people[index].password_of_acc,
-                  people[index].name_of_acc, people[index].surname_of_acc) == 4) {
+    while (isFileNotEmpty(acc, index) == true) {
         index++;
     }
     fclose(acc);
+}
+
+int forget_password_token (char* log_password){
+    return strcmp((const char *) "IForgotPass", log_password);
 }
 
 int reg_info_of_acc() {
@@ -103,7 +110,7 @@ int reg_info_of_acc() {
     return printf("\nАкаунт зареєстровано\n");
 }
 
-int log_info_of_acc (int* check_log) {
+int log_info_of_acc (bool* isEachUserLoggedIn) {
     int index;
     char log_email[32], log_password[32];
     FILE* acc;
@@ -118,20 +125,22 @@ int log_info_of_acc (int* check_log) {
             printf("Введіть пароль (якщо забули пароль введіть: 'IForgotPass'): ");
             while (strcmp(people[index].password_of_acc, log_password) != 0){
                 scanf("%s", log_password);
-                if (strcmp(people[index].password_of_acc, log_password) != 0){
-                    printf("Не вірний пароль, спробуйте ще раз.\n");
+                if (strcmp(people[index].password_of_acc, log_password) != 0 &&
+                forget_password_token (log_password)!= 0){
+                    printf("Невірний пароль, спробуйте ще раз, або введіть: 'IForgotPass'\n");
                 }
-                if (strcmp((const char *) "IForgotPass", log_password) == 0){
+                if (forget_password_token (log_password) == 0){
                     printf("Згадайте пароль і повертайтесь!\n");
                     fclose(acc);
-                    return *check_log = 0;
+                    return *isEachUserLoggedIn = false;
                 }
             }
             printf("Вітаємо, ви авторизувалися!\n");
             fclose(acc);
-            return *check_log = 1;
+            return *isEachUserLoggedIn = true;
         }
     }
+    printf("Такого акаунта не існує!\n");
 }
 
 void show_info_of_acc (){
@@ -139,10 +148,10 @@ void show_info_of_acc (){
     FILE* acc;
     loadDataFromFile();
     acc = fopen("info_acc.txt", "rt");
-    while (fscanf(acc, "%s %s %s %s", people[index].email_of_acc, people[index].password_of_acc,
-                  people[index].name_of_acc, people[index].surname_of_acc) == 4) {
+    while (isFileNotEmpty(acc, index) == true) {
         printf("%s %s %s\n", people[index].email_of_acc, people[index].name_of_acc,
                people[index].surname_of_acc);
         index++;
     }
+    fclose(acc);
 }
