@@ -13,14 +13,14 @@ void adding_goods();
 float basket_view(int product_count);
 void buy_all_products(float product_cost_summ);
 
-int function_buying(int login_is_true){
+int function_buying(int* login_is_true){
     int menu_buy_item, product_count = 0;
     float product_cost_summ;
     remove("basket.txt");
     FILE *f = fopen("basket.txt", "wt");
     fclose(f);
     printf("Ви обрали купівлю товару!\n\n");
-    if (login_is_true == 1) {
+    if (*login_is_true == 1) {
         while (true) {
             printf("Оберіть, що ви хочете робити:\n 1. Додати товари до кошика\n 2. Переглянути кошик(і суму)\n 3. Купити все, що в кошику\n 4. Очистити кошик\n 5. Повернутися до меню\n\n");
             menu_buy_item = getch();

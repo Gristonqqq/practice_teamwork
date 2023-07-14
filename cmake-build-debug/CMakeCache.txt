@@ -25,7 +25,7 @@ CMAKE_AR:FILEPATH=C:/Program Files/JetBrains/CLion 2022.2.4/bin/mingw/bin/ar.exe
 CMAKE_BUILD_TYPE:STRING=Debug
 
 //C compiler
-CMAKE_C_COMPILER:FILEPATH=C:/Program Files/JetBrains/CLion 2022.2.4/bin/mingw/bin/gcc.exe
+CMAKE_C_COMPILER:STRING=C:/Program Files/JetBrains/CLion 2022.2.4/bin/mingw/bin/gcc.exe
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -84,7 +84,7 @@ CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/practice_teamwork
 CMAKE_LINKER:FILEPATH=C:/Program Files/JetBrains/CLion 2022.2.4/bin/mingw/bin/ld.exe
 
 //make program
-CMAKE_MAKE_PROGRAM:FILEPATH=C:/Program Files/JetBrains/CLion 2022.2.4/bin/ninja/win/ninja.exe
+CMAKE_MAKE_PROGRAM:FILEPATH=C:/PROGRA~1/JETBRA~1/CLION2~1.4/bin/ninja/win/ninja.exe
 
 //Flags used by the linker during the creation of modules during
 // all build types.
