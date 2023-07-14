@@ -13,7 +13,7 @@ void adding_goods();
 float basket_view(int product_count);
 void buy_all_products(float product_cost_summ);
 
-int function_buying(int* login_is_true){
+int buying(int* login_is_true){
     int menu_buy_item, product_count = 0;
     float product_cost_summ;
     remove("basket.txt");

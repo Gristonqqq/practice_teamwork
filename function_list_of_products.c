@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-int function_list_of_products () {
+int list_Of_Products () {
     int choice;
     char filename[100];
 

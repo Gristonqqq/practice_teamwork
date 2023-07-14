@@ -4,9 +4,10 @@
 #include <conio.h>
 #include <string.h>
 
-int function_buying(int* login_is_true);
-int function_acc(int* login_is_true);
-int function_list_of_products();
+int buying(int* login_is_true);
+int account_info(int* login_is_true);
+int list_Of_Products();
+void recomendation_algoritm();
 
 int main() {
     int menu_item, login_is_true = 0;
@@ -17,15 +18,18 @@ int main() {
         menu_item = getch();
         switch (menu_item) {
             case '1':
-                function_acc(&login_is_true);
+                account_info(&login_is_true);
                 break;
             case '2':
-                function_list_of_products();
+                list_Of_Products();
                 break;
             case '3':
-                function_buying(&login_is_true);
+                buying(&login_is_true);
                 break;
             case '4':
+                recomendation_algoritm();
+                break;
+            case '5':
                 exit(1);
             default:
                 printf("\nВиберіть коректну цифру\n");

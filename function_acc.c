@@ -14,7 +14,7 @@ int reg_info_of_acc ();
 int log_info_of_acc (int* check_log);
 void show_info_of_acc ();
 
-int function_acc(int* login_is_true) {
+int account_info(int* login_is_true) {
      int menu_char_acc = 0;
      int check_log = 0;
      while (true){

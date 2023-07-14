@@ -1,16 +1,13 @@
 # ninja log v5
-1	51	7108801846736529	CMakeFiles/practice_teamwork.dir/main.c.obj	918209bee3fa5ee7
-57	120	7108887004970983	practice_teamwork.exe	ab30265e8cd6f64b
-1	79	7109552704548365	build.ninja	c8c51cce3db1da16
-2	42	7108574214006952	CMakeFiles/practice_teamwork.dir/function_transaction.c.obj	9253f4953196a965
-1	56	7108887004351852	CMakeFiles/practice_teamwork.dir/function_buying.c.obj	86b4519587a63407
-0	413	7109552704548365	build.ninja	c8c51cce3db1da16
-4	55	7109552705300185	CMakeFiles/practice_teamwork.dir/function_list_of_products.c.obj	8eb0d13710d0fb7e
-3	55	7109552705310185	CMakeFiles/practice_teamwork.dir/main.c.obj	918209bee3fa5ee7
-2	56	7109552705325638	CMakeFiles/practice_teamwork.dir/function_buying.c.obj	86b4519587a63407
-0	59	7109552705355542	CMakeFiles/practice_teamwork.dir/function_acc.c.obj	87993450e62a9ace
-60	137	7109552706098918	practice_teamwork.exe	f30fec9c8dd8f461
 2	57	7109552951932350	CMakeFiles/practice_teamwork.dir/main.c.obj	918209bee3fa5ee7
-57	127	7109552952598826	practice_teamwork.exe	f30fec9c8dd8f461
-1	62	7109555317647686	CMakeFiles/practice_teamwork.dir/function_buying.c.obj	86b4519587a63407
 2	76	7109555415081744	practice_teamwork.exe	f30fec9c8dd8f461
+0	413	7110235485547213	build.ninja	c8c51cce3db1da16
+1	62	7109555317647686	CMakeFiles/practice_teamwork.dir/function_buying.c.obj	86b4519587a63407
+4	55	7109552705300185	CMakeFiles/practice_teamwork.dir/function_list_of_products.c.obj	8eb0d13710d0fb7e
+0	59	7109552705355542	CMakeFiles/practice_teamwork.dir/function_acc.c.obj	87993450e62a9ace
+9	60	7110247646690306	CMakeFiles/practice_teamwork.dir/recomendation_algoritm.c.obj	210378fbe471765c
+1	79	7110247646898496	CMakeFiles/practice_teamwork.dir/main.c.obj	918209bee3fa5ee7
+7	82	7110247646938515	CMakeFiles/practice_teamwork.dir/function_list_of_products.c.obj	8eb0d13710d0fb7e
+3	86	7110247646967266	CMakeFiles/practice_teamwork.dir/function_buying.c.obj	86b4519587a63407
+5	87	7110247646977268	CMakeFiles/practice_teamwork.dir/function_acc.c.obj	87993450e62a9ace
+87	163	7110247647718999	practice_teamwork.exe	52a010ca59755bb2
