@@ -7,7 +7,7 @@
 
 int buying(bool* isEachUserLoggedIn);
 int account_info(bool* isEachUserLoggedIn);
-int list_Of_Products();
+void display_list_of_products();
 void recomendation_algoritm();
 
 int main() {
@@ -25,7 +25,7 @@ int main() {
                 account_info(&isEachUserLoggedIn);
                 break;
             case '2':
-                list_Of_Products();
+                display_list_of_products();
                 break;
             case '3':
                 buying(&isEachUserLoggedIn);
