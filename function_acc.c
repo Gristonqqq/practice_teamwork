@@ -53,6 +53,12 @@ bool isEmailRegistered(const char* email, int index) {
     return false;
 }
 
+int check_file_info(FILE* acc, int index){
+    int token = fscanf(acc, "%s %s %s %s", people[index].email_of_acc, people[index].password_of_acc,
+           people[index].name_of_acc, people[index].surname_of_acc);
+    return token;
+}
+
 void saveDataToFile() {
     FILE* acc = fopen("info_acc.txt", "wt");
     for (int index = 0; index < 100; index++) {
@@ -68,8 +74,7 @@ void saveDataToFile() {
 void loadDataFromFile() {
     FILE* acc = fopen("info_acc.txt", "rt");
     int index = 0;
-    while (fscanf(acc, "%s %s %s %s", people[index].email_of_acc, people[index].password_of_acc,
-                  people[index].name_of_acc, people[index].surname_of_acc) == 4) {
+    while (check_file_info(acc, index) == 4) {
         index++;
     }
     fclose(acc);
@@ -119,7 +124,7 @@ int log_info_of_acc (int* check_log) {
             while (strcmp(people[index].password_of_acc, log_password) != 0){
                 scanf("%s", log_password);
                 if (strcmp(people[index].password_of_acc, log_password) != 0){
-                    printf("Не вірний пароль, спробуйте ще раз.\n");
+                    printf("Невірний пароль, спробуйте ще раз.\n");
                 }
                 if (strcmp((const char *) "IForgotPass", log_password) == 0){
                     printf("Згадайте пароль і повертайтесь!\n");
@@ -132,6 +137,7 @@ int log_info_of_acc (int* check_log) {
             return *check_log = 1;
         }
     }
+    printf("Такого акаунта не існує!\n");
 }
 
 void show_info_of_acc (){
@@ -139,10 +145,10 @@ void show_info_of_acc (){
     FILE* acc;
     loadDataFromFile();
     acc = fopen("info_acc.txt", "rt");
-    while (fscanf(acc, "%s %s %s %s", people[index].email_of_acc, people[index].password_of_acc,
-                  people[index].name_of_acc, people[index].surname_of_acc) == 4) {
+    while (check_file_info(acc, index) == 4) {
         printf("%s %s %s\n", people[index].email_of_acc, people[index].name_of_acc,
                people[index].surname_of_acc);
         index++;
     }
+    fclose(acc);
 }
