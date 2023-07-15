@@ -11,10 +11,10 @@ struct info {
 } people[100];
 
 int reg_info_of_acc ();
-int log_info_of_acc (bool* isEachUserLoggedIn, char* get_email_from_login);
+int log_info_of_acc (bool* isUserLoggedIn, char* email_from_login);
 void show_info_of_acc ();
 
-int account_info(bool* isEachUserLoggedIn, char* get_email_from_login) {
+int account_info(bool* isUserLoggedIn, char* email_from_login) {
      int menu_char_acc = 0;
      while (true){
          printf("1. Реєстрація\n2. Ввійти в акаунт\n3. Показати всіх зареєстрованих користувачів\n4. Назад\n");
@@ -24,18 +24,18 @@ int account_info(bool* isEachUserLoggedIn, char* get_email_from_login) {
                  reg_info_of_acc();
                  break;
              case '2':
-                 if (*isEachUserLoggedIn == true){
+                 if (*isUserLoggedIn == true){
                      printf("\nВи вже увійшли до акаунта!\n");
                  }
                  else{
-                     log_info_of_acc (isEachUserLoggedIn, get_email_from_login);
+                     log_info_of_acc (isUserLoggedIn, email_from_login);
                  }
                  break;
              case '3':
                  show_info_of_acc ();
                  break;
              case '4':
-                 return *isEachUserLoggedIn;
+                 return *isUserLoggedIn;
              default:
                  printf("\nВиберіть коректну цифру\n");
          }
@@ -110,7 +110,7 @@ int reg_info_of_acc() {
     return printf("\nАкаунт зареєстровано\n");
 }
 
-int log_info_of_acc (bool* isEachUserLoggedIn, char* get_email_from_login) {
+int log_info_of_acc (bool* isUserLoggedIn, char* email_from_login) {
     int index;
     char log_email[32], log_password[32];
     FILE* acc;
@@ -132,13 +132,13 @@ int log_info_of_acc (bool* isEachUserLoggedIn, char* get_email_from_login) {
                 if (forget_password_token (log_password) == 0){
                     printf("Згадайте пароль і повертайтесь!\n");
                     fclose(acc);
-                    return *isEachUserLoggedIn = false;
+                    return *isUserLoggedIn = false;
                 }
             }
             printf("Вітаємо, ви авторизувалися!\n");
-            strcpy(get_email_from_login, people[index].email_of_acc);
+            strcpy(email_from_login, people[index].email_of_acc);
             fclose(acc);
-            return *isEachUserLoggedIn = true;
+            return *isUserLoggedIn = true;
         }
     }
     printf("Такого акаунта не існує!\n");
