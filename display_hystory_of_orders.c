@@ -12,7 +12,7 @@ void create_filename_of_orders(char* email_from_login, char* filename){
     strcat(filename, add_txt);
 }
 
-void collect_history_of_orders(char* email_from_login, int* product_count){
+void collect_history_of_orders(char* email_from_login, int* product_count){  // TODO: temp variable. Should be changed
     char filename[32];
     create_filename_of_orders(email_from_login, filename);
     FILE* orders = fopen(filename, "at");
