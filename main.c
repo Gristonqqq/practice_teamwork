@@ -9,6 +9,7 @@ int buying(bool* isUserLoggedIn, char* email_from_login);
 int account_info(bool* isUserLoggedIn, char* email_from_login);
 void display_list_of_products();
 void recommendation_algorithm(char* email_from_login);
+int reviews_menu(char* email_from_login, bool* isUserLoggedIn);
 
 int main() {
     int menu_item;
@@ -18,7 +19,7 @@ int main() {
     bool isUserLoggedIn = false;
     printf("Вітаємо вас у нашому застосунку сервісу замовлення їжі!\n");
     while (true) {
-        printf("Оберіть пункт меню для того щоб продовжити:\n 1. Дії щодо аккаунта\n 2. Інформація щодо товарів\n 3. Купівля\n 4. Список рекомендацій\n 5. Вихід\n");
+        printf("Оберіть пункт меню для того щоб продовжити:\n 1. Дії щодо аккаунта\n 2. Інформація щодо товарів\n 3. Купівля\n 4. Список рекомендацій\n 5. Відгуки\n 6. Вихід\n");
         printf("Введіть цифру пункту меню:\n");
         menu_item = getch();
         switch (menu_item) {
@@ -35,6 +36,9 @@ int main() {
                 recommendation_algorithm(email_from_login);
                 break;
             case '5':
+                reviews_menu(email_from_login, &isUserLoggedIn);
+                break;
+            case '6':
                 exit(1);
             default:
                 printf("\nВиберіть коректну цифру\n");
