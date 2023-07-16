@@ -5,6 +5,7 @@
 #include <stdlib.h>
 
 typedef struct {
+    int goods_code;
     char goods_name[70];
     float goods_cost;
 } basket;
@@ -70,7 +71,7 @@ void adding_goods(){
     for (int i = 0; i < 52; i++) {
         fgets(line, sizeof(line), product_list);
         token = strtok(line, "\t");
-        goods_code = atoi(token);
+        list.goods_code = atoi(token);
         token = strtok(NULL, "\t");
         strcpy(list.goods_name, token);
         token = strtok(NULL, "\t");
@@ -81,6 +82,7 @@ void adding_goods(){
         }
     }
     printf("%d %s %.2f\n\n", goods_code, list.goods_name, list.goods_cost);
+    fwrite(&list.goods_code, sizeof(list.goods_code), 1, basketf);
     fwrite(&list.goods_name, sizeof(list.goods_name), 1, basketf);
     fwrite(&list.goods_cost, sizeof(list.goods_cost), 1, basketf);
     fclose(basketf);
