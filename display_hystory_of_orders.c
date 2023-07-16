@@ -41,16 +41,21 @@ void display_history_of_orders(char* email_from_login){
     int index = 0;
     create_filename_of_orders(email_from_login, filename);
     FILE* orders = fopen(filename, "rt");
-    while (fgets(line, sizeof(line), orders) != NULL) {
-        token = strtok(line, "\t");
-        basket[index].goods_code = atoi(token);
-        token = strtok(NULL, "\t");
-        strcpy(basket[index].goods_name, token);
-        token = strtok(NULL, "\t");
-        basket[index].goods_cost = atof(token);
-        printf("%d %s %.2f\n", basket[index].goods_code, basket[index].goods_name,
-               basket[index].goods_cost);
-        index++;
+    if (fgets(line, sizeof(line), orders) == NULL){
+        printf("Ви ще не робили замовлень\n");
+    }
+    else{
+        do {
+            token = strtok(line, "\t");
+            basket[index].goods_code = atoi(token);
+            token = strtok(NULL, "\t");
+            strcpy(basket[index].goods_name, token);
+            token = strtok(NULL, "\t");
+            basket[index].goods_cost = atof(token);
+            printf("%d %s %.2f\n", basket[index].goods_code, basket[index].goods_name,
+                   basket[index].goods_cost);
+            index++;
+        }while (fgets(line, sizeof(line), orders) != NULL);
     }
     fclose(orders);
 }
