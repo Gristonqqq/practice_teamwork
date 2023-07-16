@@ -15,11 +15,11 @@ int log_info_of_acc (bool* isUserLoggedIn, char* email_from_login);
 void show_info_of_acc ();
 
 int account_info(bool* isUserLoggedIn, char* email_from_login) {
-     int menu_char_acc = 0;
+     int menu_acc = 0;
      while (true){
          printf("1. Реєстрація\n2. Ввійти в акаунт\n3. Показати всіх зареєстрованих користувачів\n4. Назад\n");
-         menu_char_acc = getch();
-         switch (menu_char_acc) {
+         menu_acc = getch();
+         switch (menu_acc) {
              case '1':
                  reg_info_of_acc();
                  break;
