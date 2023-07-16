@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void recommendation_algorithm(){
+/*void recommendation_algorithm(){
     int count_of_order_type[7], product_code_input, wanted_product_code, i;
     char* token;
     printf("Ви обрали функцію показу рекомендацій!\n");
@@ -17,4 +17,4 @@ void recommendation_algorithm(){
             i++;
         } while (fgets(token, sizeof(token), product_list) != NULL);
     } while(fgets(token, sizeof(token), file_undefined) != NULL);
-}
+}*/

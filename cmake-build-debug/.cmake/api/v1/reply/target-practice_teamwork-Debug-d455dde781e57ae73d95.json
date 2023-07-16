@@ -59,7 +59,8 @@
 				1,
 				2,
 				3,
-				4
+				4,
+				5
 			]
 		}
 	],
@@ -100,7 +101,8 @@
 				1,
 				2,
 				3,
-				4
+				4,
+				5
 			]
 		}
 	],
@@ -134,6 +136,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "recomendation_algoritm.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "display_hystory_of_orders.c",
 			"sourceGroupIndex" : 0
 		}
 	],
