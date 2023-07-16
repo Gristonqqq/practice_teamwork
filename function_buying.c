@@ -11,18 +11,20 @@ typedef struct {
 
 void adding_goods();
 float basket_view(int product_count);
-void buy_all_products(float product_cost_summ);
+void buy_all_products(float product_cost_summ, int* product_count, char* email_from_login);
+void collect_history_of_orders(char* email_from_login, int* product_count);
+void display_history_of_orders(char* email_from_login);
 
-int buying(bool* isEachUserLoggedIn){
+int buying(bool* isUserLoggedIn, char* email_from_login){
     int menu_buy_item, product_count = 0;
     float product_cost_summ;
     remove("basket.txt");
     FILE *f = fopen("basket.txt", "wt");
     fclose(f);
     printf("Ви обрали купівлю товару!\n\n");
-    if (*isEachUserLoggedIn == true) {
+    if (*isUserLoggedIn == true) {
         while (true) {
-            printf("Оберіть, що ви хочете робити:\n 1. Додати товари до кошика\n 2. Переглянути кошик(і суму)\n 3. Купити все, що в кошику\n 4. Очистити кошик\n 5. Повернутися до меню\n\n");
+            printf("Оберіть, що ви хочете робити:\n 1. Додати товари до кошика\n 2. Переглянути кошик(і суму)\n 3. Купити все, що в кошику\n 4. Очистити кошик\n 5. Переглянути історію замовлень\n 6. Повернутися до меню\n\n");
             menu_buy_item = getch();
             switch (menu_buy_item) {
                 case '1':
@@ -33,7 +35,7 @@ int buying(bool* isEachUserLoggedIn){
                     product_cost_summ = basket_view(product_count);
                     break;
                 case '3':
-                    buy_all_products(product_cost_summ);
+                    buy_all_products(product_cost_summ, &product_count, email_from_login);
                     break;
                 case '4':
                     f = fopen("basket.txt", "wt");
@@ -41,6 +43,9 @@ int buying(bool* isEachUserLoggedIn){
                     product_count = 0;
                     break;
                 case '5':
+                    display_history_of_orders(email_from_login);
+                    break;
+                case '6':
                     remove("basket.txt");
                     return 0;
                 default:
@@ -98,8 +103,9 @@ float basket_view(int product_count){
     return product_cost_summ;
 }
 
-void buy_all_products(float product_cost_summ){
+void buy_all_products(float product_cost_summ, int* product_count, char* email_from_login){
     printf("Ваше замовлення на суму %.2f було оброблене. Дякуємо що обрали наш сервіс!\n\n", product_cost_summ);
-    FILE *f = fopen("basket.txt", "wt");
+    collect_history_of_orders(email_from_login, product_count);
+    FILE* f = fopen("basket.txt", "wt");
     fclose(f);
 }
