@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct {
     int goods_code;
@@ -37,6 +38,8 @@ int buying(bool* isUserLoggedIn, char* email_from_login){
                     break;
                 case '3':
                     buy_all_products(product_cost_summ, &product_count, email_from_login);
+                    product_cost_summ = 0;
+                    product_count = 0;
                     break;
                 case '4':
                     f = fopen("basket.txt", "wt");
@@ -60,6 +63,7 @@ int buying(bool* isUserLoggedIn, char* email_from_login){
 }
 
 float adding_goods(){
+    bool product_founded = false;
     basket list;
     float product_cost_summ = 0;
     int entered_code;
@@ -69,8 +73,7 @@ float adding_goods(){
     FILE *product_list = fopen("basket_search_list.txt", "rt");
     printf("Для того, щоб додати їжу, введіть код!\n");
     scanf("%d", &entered_code);
-    for (int i = 0; i < 52; i++) {
-        fgets(line, sizeof(line), product_list);
+    while (fgets(line, sizeof(line), product_list) != NULL) {
         token = strtok(line, "\t");
         list.goods_code = atoi(token);
         token = strtok(NULL, "\t");
@@ -79,12 +82,17 @@ float adding_goods(){
         token = strtok(NULL, "\t");
         list.goods_cost = atof(token);
         if (entered_code == list.goods_code){
+            product_founded = true;
             break;
         }
     }
-    printf("%d %s %.2f\n\n", list.goods_code, list.goods_name, list.goods_cost);
-    fprintf(basketf,"%d\t%s\t%f\n", list.goods_code, list.goods_name, list.goods_cost);
-    product_cost_summ = list.goods_cost;
+    if (product_founded) {
+        printf("%d %s %.2f\n\n", list.goods_code, list.goods_name, list.goods_cost);
+        fprintf(basketf, "%d\t%s\t%f\n", list.goods_code, list.goods_name, list.goods_cost);
+        product_cost_summ = list.goods_cost;
+    } else {
+        printf("Подивіться в каталог і введіть коректне число!");
+    }
     fclose(basketf);
     fclose(product_list);
     return product_cost_summ;
