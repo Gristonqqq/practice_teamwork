@@ -10,15 +10,15 @@ typedef struct {
     float goods_cost;
 } basket;
 
-void adding_goods();
-float basket_view(int product_count);
+float adding_goods();
+void basket_view(int product_count, float product_cost_summ);
 void buy_all_products(float product_cost_summ, int* product_count, char* email_from_login);
 void collect_history_of_orders(char* email_from_login, int* product_count);
 void display_history_of_orders(char* email_from_login);
 
 int buying(bool* isUserLoggedIn, char* email_from_login){
     int menu_buy_item, product_count = 0;
-    float product_cost_summ;
+    float product_cost_summ = 0;
     remove("basket.txt");
     FILE *f = fopen("basket.txt", "wt");
     fclose(f);
@@ -29,11 +29,11 @@ int buying(bool* isUserLoggedIn, char* email_from_login){
             menu_buy_item = getch();
             switch (menu_buy_item) {
                 case '1':
-                    adding_goods();
+                    product_cost_summ += adding_goods();
                     product_count++;
                     break;
                 case '2':
-                    product_cost_summ = basket_view(product_count);
+                    basket_view(product_count, product_cost_summ);
                     break;
                 case '3':
                     buy_all_products(product_cost_summ, &product_count, email_from_login);
@@ -59,8 +59,9 @@ int buying(bool* isUserLoggedIn, char* email_from_login){
     }
 }
 
-void adding_goods(){
+float adding_goods(){
     basket list;
+    float product_cost_summ = 0;
     int entered_code;
     char line[200];
     char* token;
@@ -83,13 +84,14 @@ void adding_goods(){
     }
     printf("%d %s %.2f\n\n", list.goods_code, list.goods_name, list.goods_cost);
     fprintf(basketf,"%d\t%s\t%f\n", list.goods_code, list.goods_name, list.goods_cost);
+    product_cost_summ = list.goods_cost;
     fclose(basketf);
     fclose(product_list);
+    return product_cost_summ;
 }
 
-float basket_view(int product_count){
+void basket_view(int product_count, float product_cost_summ){
     basket list;
-    float product_cost_summ = 0;
     char* token;
     char line[200];
     FILE *basket = fopen("basket.txt", "rt");
@@ -104,11 +106,9 @@ float basket_view(int product_count){
         printf("%d\t", list.goods_code);
         printf("%s\t", list.goods_name);
         printf("%.2f\n", list.goods_cost);
-        product_cost_summ += list.goods_cost;
     }
     printf("\n Загальна ціна за обрану їжу: %.2f\n\n", product_cost_summ);
     fclose(basket);
-    return product_cost_summ;
 }
 
 void buy_all_products(float product_cost_summ, int* product_count, char* email_from_login){
