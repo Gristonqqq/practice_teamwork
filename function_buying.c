@@ -78,7 +78,7 @@ float adding_goods(){
         list.goods_code = atoi(token);
         token = strtok(NULL, "\t");
         strcpy(list.goods_name, token);
-        token = strtok(NULL, "\t");
+        strtok(NULL, "\t");
         token = strtok(NULL, "\t");
         list.goods_cost = atof(token);
         if (entered_code == list.goods_code){
@@ -91,7 +91,7 @@ float adding_goods(){
         fprintf(basketf, "%d\t%s\t%f\n", list.goods_code, list.goods_name, list.goods_cost);
         product_cost_summ = list.goods_cost;
     } else {
-        printf("Подивіться в каталог і введіть коректне число!");
+        printf("Подивіться в каталог і введіть коректне число!\n");
     }
     fclose(basketf);
     fclose(product_list);
