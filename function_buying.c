@@ -61,8 +61,8 @@ int buying(bool* isUserLoggedIn, char* email_from_login){
 
 void adding_goods(){
     basket list;
-    int goods_code, entered_code;
-    char line[100];
+    int entered_code;
+    char line[200];
     char* token;
     FILE *basketf = fopen("basket.txt", "a");
     FILE *product_list = fopen("basket_search_list.txt", "rt");
@@ -77,14 +77,12 @@ void adding_goods(){
         token = strtok(NULL, "\t");
         token = strtok(NULL, "\t");
         list.goods_cost = atof(token);
-        if (entered_code == goods_code){
+        if (entered_code == list.goods_code){
             break;
         }
     }
-    printf("%d %s %.2f\n\n", goods_code, list.goods_name, list.goods_cost);
-    fwrite(&list.goods_code, sizeof(list.goods_code), 1, basketf);
-    fwrite(&list.goods_name, sizeof(list.goods_name), 1, basketf);
-    fwrite(&list.goods_cost, sizeof(list.goods_cost), 1, basketf);
+    printf("%d %s %.2f\n\n", list.goods_code, list.goods_name, list.goods_cost);
+    fprintf(basketf,"%d\t%s\t%f\n", list.goods_code, list.goods_name, list.goods_cost);
     fclose(basketf);
     fclose(product_list);
 }
@@ -92,11 +90,17 @@ void adding_goods(){
 float basket_view(int product_count){
     basket list;
     float product_cost_summ = 0;
+    char* token;
+    char line[200];
     FILE *basket = fopen("basket.txt", "rt");
     for (int i = 0; i < product_count; i++){
-        fread(&list.goods_code, sizeof(list.goods_code), 1, basket);
-        fread(list.goods_name, sizeof(list.goods_name), 1, basket);
-        fread(&list.goods_cost, sizeof(float), 1, basket);
+        fgets(line, sizeof(line), basket);
+        token = strtok(line, "\t");
+        list.goods_code = atoi(token);
+        token = strtok(NULL, "\t");
+        strcpy(list.goods_name, token);
+        token = strtok(NULL, "\t");
+        list.goods_cost = atof(token);
         printf("%d\t", list.goods_code);
         printf("%s\t", list.goods_name);
         printf("%.2f\n", list.goods_cost);
