@@ -8,7 +8,7 @@
 int buying(bool* isEachUserLoggedIn);
 int account_info(bool* isEachUserLoggedIn);
 void display_list_of_products();
-void recomendation_algoritm();
+void recommendation_algorithm();
 
 int main() {
     int menu_item;
@@ -17,7 +17,7 @@ int main() {
     bool isEachUserLoggedIn = false;
     printf("Вітаємо вас у нашому застосунку сервісу замовлення їжі!\n");
     while (true) {
-        printf("Оберіть пункт меню для того щоб продовжити:\n 1. Дії щодо аккаунта\n 2. Інформація щодо товарів\n 3. Купівля\n 5. Вихід\n");
+        printf("Оберіть пункт меню для того щоб продовжити:\n 1. Дії щодо аккаунта\n 2. Інформація щодо товарів\n 3. Купівля\n 4. Список рекомендацій 5. Вихід\n");
         printf("Введіть цифру пункту меню:\n");
         menu_item = getch();
         switch (menu_item) {
@@ -31,7 +31,7 @@ int main() {
                 buying(&isEachUserLoggedIn);
                 break;
             case '4':
-                recomendation_algoritm();
+                recommendation_algorithm();
                 break;
             case '5':
                 exit(1);
