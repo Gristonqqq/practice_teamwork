@@ -94,8 +94,10 @@ float basket_view(int product_count){
     float product_cost_summ = 0;
     FILE *basket = fopen("basket.txt", "rt");
     for (int i = 0; i < product_count; i++){
+        fread(&list.goods_code, sizeof(list.goods_code), 1, basket);
         fread(list.goods_name, sizeof(list.goods_name), 1, basket);
         fread(&list.goods_cost, sizeof(float), 1, basket);
+        printf("%d\t", list.goods_code);
         printf("%s\t", list.goods_name);
         printf("%.2f\n", list.goods_cost);
         product_cost_summ += list.goods_cost;
