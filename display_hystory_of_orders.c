@@ -14,20 +14,25 @@ void create_filename_of_orders(char* email_from_login, char* filename){
     strcat(filename, add_txt);
 }
 
+void collect_list(int index, char line[], char* token){
+    token = strtok(line, "\t");
+    basket[index].goods_code = atoi(token);
+    token = strtok(NULL, "\t");
+    strcpy(basket[index].goods_name, token);
+    token = strtok(NULL, "\t");
+    basket[index].goods_cost = atof(token);
+}
+
 void collect_history_of_orders(char* email_from_login, int* product_count){
     char filename[32], line[200];
     char* token;
+    int index = 0;
     create_filename_of_orders(email_from_login, filename);
     FILE* orders = fopen(filename, "at");
     FILE* f = fopen("basket.txt", "rt");
-    for (int index = 0; index < *product_count; index++){
+    for (index = 0; index < *product_count; index++){
         fgets(line, sizeof(line), f);
-        token = strtok(line, "\t");
-        basket[index].goods_code = atoi(token);
-        token = strtok(NULL, "\t");
-        strcpy(basket[index].goods_name, token);
-        token = strtok(NULL, "\t");
-        basket[index].goods_cost = atof(token);
+        collect_list(index, line, token);
         fprintf(orders, "%d\t%s\t%.2f\n", basket[index].goods_code, basket[index].goods_name,
                 basket[index].goods_cost);
     }
@@ -46,12 +51,7 @@ void display_history_of_orders(char* email_from_login){
     }
     else{
         do {
-            token = strtok(line, "\t");
-            basket[index].goods_code = atoi(token);
-            token = strtok(NULL, "\t");
-            strcpy(basket[index].goods_name, token);
-            token = strtok(NULL, "\t");
-            basket[index].goods_cost = atof(token);
+            collect_list(index, line, token);
             printf("%d %s %.2f\n", basket[index].goods_code, basket[index].goods_name,
                    basket[index].goods_cost);
             index++;
