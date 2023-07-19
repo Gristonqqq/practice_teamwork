@@ -8,7 +8,7 @@
 int buying(bool* isUserLoggedIn, char* email_from_login);
 int account_info(bool* isUserLoggedIn, char* email_from_login);
 void display_list_of_products();
-void recommendation_algorithm(char* email_from_login);
+void recommendation_algorithm(char* email_from_login, bool* isUserLoggedIn);
 int reviews_menu(char* email_from_login, bool* isUserLoggedIn);
 
 int main() {
@@ -35,7 +35,7 @@ int main() {
                 buying(&isUserLoggedIn, email_from_login);
                 break;
             case '4':
-                recommendation_algorithm(email_from_login);
+                recommendation_algorithm(email_from_login, &isUserLoggedIn);
                 break;
             case '5':
                 reviews_menu(email_from_login, &isUserLoggedIn);
