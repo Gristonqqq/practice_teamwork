@@ -85,6 +85,12 @@ build CMakeFiles/practice_teamwork.dir/display_hystory_of_orders.c.obj: C_COMPIL
   OBJECT_DIR = CMakeFiles\practice_teamwork.dir
   OBJECT_FILE_DIR = CMakeFiles\practice_teamwork.dir
 
+build CMakeFiles/practice_teamwork.dir/reviews.c.obj: C_COMPILER__practice_teamwork_Debug C$:/Users/sasha/Documents/GitHub/practice_teamwork/reviews.c || cmake_object_order_depends_target_practice_teamwork
+  DEP_FILE = CMakeFiles\practice_teamwork.dir\reviews.c.obj.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles\practice_teamwork.dir
+  OBJECT_FILE_DIR = CMakeFiles\practice_teamwork.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target practice_teamwork
@@ -93,7 +99,7 @@ build CMakeFiles/practice_teamwork.dir/display_hystory_of_orders.c.obj: C_COMPIL
 #############################################
 # Link the executable practice_teamwork.exe
 
-build practice_teamwork.exe: C_EXECUTABLE_LINKER__practice_teamwork_Debug CMakeFiles/practice_teamwork.dir/main.c.obj CMakeFiles/practice_teamwork.dir/function_buying.c.obj CMakeFiles/practice_teamwork.dir/function_acc.c.obj CMakeFiles/practice_teamwork.dir/display_list_of_products.c.obj CMakeFiles/practice_teamwork.dir/recomendation_algoritm.c.obj CMakeFiles/practice_teamwork.dir/display_hystory_of_orders.c.obj
+build practice_teamwork.exe: C_EXECUTABLE_LINKER__practice_teamwork_Debug CMakeFiles/practice_teamwork.dir/main.c.obj CMakeFiles/practice_teamwork.dir/function_buying.c.obj CMakeFiles/practice_teamwork.dir/function_acc.c.obj CMakeFiles/practice_teamwork.dir/display_list_of_products.c.obj CMakeFiles/practice_teamwork.dir/recomendation_algoritm.c.obj CMakeFiles/practice_teamwork.dir/display_hystory_of_orders.c.obj CMakeFiles/practice_teamwork.dir/reviews.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\practice_teamwork.dir
